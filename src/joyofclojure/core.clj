@@ -7,15 +7,15 @@
 (defn sort-parts [work]
   (lazy-seq
     (do
-      (println (str "work " work))
+      (println (str "seqs to sort (work) " work))
       (loop [[part & parts] work]
         (do
-          (println (str "(seq part) " (seq part)))
+          (println (str "first seq contains items to sort (seq part) " (seq part)))
           (if-let [[pivot & xs] (seq part)]
             (let [smaller? #(< % pivot)]
               (do
                 (println 
-                  (str "recur "
+                  (str "take first item (pivot = " pivot ") from seq to sort and replace seq to sort with new seqs smaller / larger than pivot "
                        (list*
                        (filter smaller? xs)
                        pivot
@@ -29,7 +29,7 @@
                        parts))))
             (when-let [[x & parts] parts]
               (do 
-                (println (str "when-let x " x " parts " parts))
+                (println (str "return lowest pivot (" x ") attached to result of sorting remaining seqs of seqs to sort " parts))
                 (cons x (sort-parts parts))))))))))
 
 (defn qsort [xs]
