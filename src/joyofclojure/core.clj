@@ -10,7 +10,7 @@
       (println (str "seqs to sort (work) " work))
       (loop [[part & parts] work]
         (do
-          (println (str "first seq contains items to sort (seq part) " (seq part)))
+          (println (str "first seq contains items to sort (seq part)? " (seq part)))
           (if-let [[pivot & xs] (seq part)]
             (let [smaller? #(< % pivot)]
               (do
